@@ -248,3 +248,59 @@ Agora podemos executar a nossa aplicação com o comando:
 dotnet run
 ```
 Vamos acessar a interface do ``Swagger`` no caminho padrão de uma aplicação ASP NET 5 (``https://localhost:5001/swagger/index.html``) e veremos a interface gráfica:
+
+![Requisição](https://raw.githubusercontent.com/diegostan/aspnet-refit/master/images/swagger1.png)
+
+### Solicitando o método Get
+
+Vamos executar o método ``Get``  para obtermos a resposta da API externa:
+
+![Requisição](https://raw.githubusercontent.com/diegostan/aspnet-refit/master/images/swagger3get.png)
+> Tivemos o retorno exatamente como o DTO que modelamos anteriormente
+
+### Solicitando o método Post
+Para executarmos o método ``Post`` precisamos passar no corpo da requisição da nossa API o ``CarModel`` :
+```j
+{
+  "name": "",
+  "description": "",
+  "price": 0,
+  "year": 0,
+  "category": ""
+}
+```
+Agora vamos executar o método para vermos a resposta:
+![Requisição](https://raw.githubusercontent.com/diegostan/aspnet-refit/master/images/swagger1post.png)
+
+Por mais que a requisição tenha sido realizada com sucesso, dentro da nossa API externa temos um tratamento de erro, recebemos no nosso retorno personalizado um  ``statusCode 400 bad request`` e algumas informações sobre o preenchimento dos campos.
+
+Vamos corrigir a requisição conforme as mensagens que recebemos:
+```j
+{
+  "name": "Opala", 
+  "description": "Chevrolet Opala 4.1S 2p",
+  "price": 50000,
+  "year": 1988,
+  "category": "Cupe de luxo"
+}
+```
+Enviando a requisição corrigida temos o seguinte resultado:
+![Requisição](https://raw.githubusercontent.com/diegostan/aspnet-refit/master/images/swagger2post.png)
+
+Agora recebemos o ``statusCode 201 created`` e a mensagem de *Carro cadastrado com sucesso*. 
+
+Com isso finalizamos nossa aplicação.
+
+### Considerações finais
+Existem ferramentas fantásticas no mundo do .NET, graças à pessoas que contribuem diariamente e criam formas de facilitar a vida de todos os desenvolvedores. 
+O **Refit** sem dúvida alguma é o pacote que eu mais gosto quando se trata de ASP NET, nós vimos nesse artigo como o trabalho de consumir uma API externa fica extremamente simples com essa ferramenta. 
+
+Espero que tenham gostado e até a próxima!
+
+
+### Fontes
+Contribua com melhorias para o Refit, segue o link do código fonte:
+https://github.com/reactiveui/refit
+
+O projeto utilizado nesse artigo está disponível em:
+https://github.com/diegostan/RefitExample.git
